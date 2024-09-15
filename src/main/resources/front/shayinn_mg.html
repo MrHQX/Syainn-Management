@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>社員管理画面</title>
+	<style>
+		#top {
+			/** web标题**/
+			display: flex;
+			justify-content: space-between;
+			margin: 1%;
+		}
+
+		#top_1 {
+			margin-left: 1%;
+		}
+
+		#text_title_mid {
+			padding-top: 20px;
+			font-weight: 300;
+		}
+
+		#top_img {
+			padding: 10px;
+		}
+
+		/* 以上是web头部*/
+
+		#all {
+			/* 最大的div*/
+			margin: 2%;
+		}
+
+		#time_user {
+			/* 横向*/
+			display: flex;
+			align-items: baseline;
+		}
+
+		.ayida {
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+
+		.time_left {
+			margin-right: auto;
+		}
+
+
+		/* 以上是时间\user*/
+
+		.container {
+			/* row布局*/
+			display: flex;
+			align-items: baseline;
+
+		}
+
+		.eda_table_blue {
+			border-collapse: collapse;
+			border-top: 5px solid cornflowerblue;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+			border-bottom: 1px solid black;
+			font-size: small;
+		}
+
+		.eda_table_green {
+			border-collapse: collapse;
+			border-top: 5px solid green;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+			border-bottom: 1px solid black;
+			font-size: small;
+		}
+
+		.eda_table_orange {
+			border-collapse: collapse;
+			border-top: 5px solid orange;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+			border-bottom: 1px solid black;
+			font-size: small;
+		}
+
+		.nav_tr {
+			height: 30px;
+			border: 1px solid black;
+		}
+
+
+		.a_black {
+			text-decoration: none;
+			color: black;
+		}
+
+		.a_white {
+			text-decoration: none;
+			color: white;
+		}
+
+		.redback {
+			background-color: red;
+		}
+
+		/* 以上是导航栏\user*/
+
+
+
+		#big_title {
+			width: auto;
+			height: 30px;
+			padding-bottom: 5px;
+			margin-top: 15px;
+			border-radius: 5px;
+			padding-left: 10px;
+			background-image: linear-gradient(gray, white, gray);
+			align-items: baseline;
+			display: flex;
+			align-items: center;
+			/* 垂直对齐*/
+		}
+
+		#blue_block {
+			margin-right: 20px;
+			width: 20px;
+			height: 20px;
+			border-radius: 5px;
+			background-color: deepskyblue;
+		}
+
+		/* 以上是大标题\user*/
+
+		.small_title {
+			display: flex;
+		}
+
+		/*  */
+		.back_block {
+			width: 15px;
+			height: 15px;
+			background-color: black;
+			margin-right: 5px;
+			margin-top: 20px;
+		}
+
+		.input_list_p {
+			margin-right: 5%;
+		}
+
+		.input_list {
+			margin-right: 15%;
+			width: 200px;
+		}
+
+		.btn_serch {
+			border-radius: 5px;
+			background-image: linear-gradient(lightskyblue, white, lightskyblue);
+			width: 100px;
+			height: 30px;
+		}
+
+
+		table {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+
+		th {
+			border: 1px solid black;
+			font-size: smaller;
+		}
+
+		td {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="all">
+		<div><!-- 以上是web头部 -->
+			<div id="top">
+				<div id="top_1">
+					<h3>株式会社xxxxxx</h1>
+						<p>ｘｘｘｘ</p>
+				</div>
+				<h1 id="text_title_mid">社内統合管理システム</h1>
+				<img src="" id="top_img">
+			</div>
+		</div>
+
+		<div><!-- 是时间 用户 -->
+			<div>
+				<div id="time_user">
+					<p class="ayida time_left">日期 :{{user.big_time}}</p>
+					<p class="ayida time_left">{{user.small_time}}</p>
+					<p class="ayida user_right">ユーザー名: {{user.username}}</p>
+					<p class="ayida user_right">权限: {{user.userrole}}</p>
+					<a href="" class="ayida user_right" v-on:click="loginout()">ログイン</a>
+				</div>
+			</div>
+			<!-- 日期和user状态-->
+		</div>
+		<!-- <div class="container" style="justify-content: space-between;">
+			<table class="eda_table_blue">
+				<tr class="nav_tr">
+					<td class="nav_tr"><a href="" class="a_black">作業催促</a></td>
+					<td class="nav_tr"><a href="" class="a_black">受注管理</a></td>
+					<td class="nav_tr"><a href="" class="a_black">外注管理</a></td>
+					<td class="nav_tr"><a href="" class="a_black">請求管理</a></td>
+					<td class="nav_tr"><a href="" class="a_black">見積作成</a></td>
+					<td class="nav_tr"><a href="" class="a_black">各書類作成</a></td>
+					<td class="nav_tr"><a href="" class="a_black">経費管理</a></td>
+					<td class="nav_tr"><a href="" class="a_black">営業状況</a></td>
+				</tr>
+			</table>
+			<table class="eda_table_green">
+				<tr class="nav_tr">
+					<td class="nav_tr"><a href="" class="a_black">取引先管理</a></td>
+					<td class="nav_tr"><a href="" class="a_black">営業先管理</a></td>
+				</tr>
+			</table>
+			<table class="eda_table_orange">
+				<tr class="nav_tr">
+					<td class="nav_tr  redback"><a href="" class="a_white">社員管理</a></td>
+					<td class="nav_tr"><a href="" class="a_black">システム設定</a></td>
+					<td class="nav_tr"><a href="" class="a_black">ユーザ管理</a></td>
+				</tr>
+			</table>
+		</div>
+		 -->
+
+
+
+
+
+			<div>
+				<!--社员管理标题-->
+				<div id="big_title">
+					<span id="blue_block"></span>
+					<h2>社員管理</h3>
+				</div>
+			</div>
+			<div class="small_title"><!--検索条件-->
+				<span class="back_block"></span>
+				<p style="margin-top: 15px;">検索条件</p>
+			</div>
+			<div class="container"><!--所属会社--><!--社員名-->
+				<p class="input_list_p">所属会社</p>
+				<select name="" id="sosyoku_kaisya" class="input_list" v-model="selectmsg.syozokuKaisya">
+					<option value="0" selected>全て</option>
+					<option value="1">株式会社1</option>
+					<option value="2">株式会社2</option>
+				</select>
+				<p class="input_list_p">社員名</p>
+				<input type="text" name="name" v-model="selectmsg.name">
+			</div>
+			<div class="container"> <!--職業種類--><!--在職-->
+				<p class="input_list_p">職業種類</p>
+				<select style="width:200px;" v-model="selectmsg.syokugyoKind">
+					<option value="1">役員</option>
+					<option value="2">総務</option>
+					<option value="3">IT営業</option>
+					<option value="4" selected>ITエンジニア</option>
+					<option value="5">不動産スタッフ</option>
+					<option value="6">個人事業者</option>
+				</select>
+				<label style="margin-left: 15%;">在職</label>
+				<input type="checkbox" style="margin-left: 30px; margin-right: 50px;" name="sex"
+					v-model="selectmsg.zaisyokuyes" value="1">
+				<label style="margin-right: 5%;">非在職</label>
+				<input type="checkbox" style="margin-right: 50px;" name="sex" value="1" v-model="selectmsg.zaisyokuno">
+			</div>
+			<button class="btn_serch" v-on:click="getsyainSelect()">検 索</button>
+			<div class="small_title"><!--社員一覧-->
+				<span class="back_block"></span>
+				<p style="margin-top: 15px;">社員一覧</p>
+			</div>
+			<div class="container" style="float:right;">
+				<p style="margin-right: 50px;">件数:</p>
+				<p style="margin-right: 50px;">{{syainMain.length}}</p>
+				<a style="margin-right: 50px;" href="shayinn_toroku.html">新規登録</a>
+			</div>
+			<table style="width: 100%;">
+				<tr style="background-color: lightblue;">
+					<td>所属会社</td>
+					<td>社員名</td>
+					<td>性別</td>
+					<td>職業種類</td>
+					<td>入社日</td>
+					<td>退社日</td>
+					<td>職務経歴書</td>
+					<td>編集</td>
+				</tr>
+				<tr v-for="(item ,index) in syainMain">
+					<td>{{item.syozokuKaisya}}</td>
+					<td>{{item.firstNameKanji}}{{item.lastNameKanji}}</td>
+					<td>{{item.seibetu}}</td>
+					<td>{{item.syokugyoKind}}</td>
+					<td>{{item.nyuusyaDate}}</td>
+					<td>{{item.taisyaDate}}</td>
+					<td>
+						<a href="">登録</a>
+					</td>
+					<td>
+						<a v-on:click="kousin(item.syainId)">更新</a>
+						<a v-on:click="checkdelete(item.syainId,item.firstNameKanji,item.lastNameKanji)">削除</a>
+					</td>
+				</tr>
+
+
+			</table>
+		</div>
+</body>
+<script src="vue2.7.14.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+	let Toptime = new Vue({
+		el: '#all',
+		data: {
+			user: {
+				big_time: '',
+				time: '',
+				username: '',
+				userrole: '',
+			},
+			userlog: {
+				userId: '',
+				gamenId: '',
+				startTime: '',
+			},
+			selectmsg: {
+				syozokuKaisya: '0',
+				syokugyoKind: '4',
+				zaisyokuyes: '',
+				zaisyokuno: '',
+				name: '',
+			},
+			syainMain: [],
+			tgsyainsu: 0,
+		},
+		created() {
+			this.getall();
+			//this.checkUser();
+			this.postuserlog();
+
+		},
+		methods: {
+			async postuserlog() {
+				this.userlog.userId = sessionStorage.getItem('userId'),
+					this.userlog.gamenId = 'toroku';
+				this.userlog.startTime = new Date().toISOString();
+				try {
+					const response = await axios.post('/userlog', this.userlog);
+					console.log(response.data.msg);
+
+				} catch (error) {
+					this.error = 'Failed to fetch data';
+					console.error('Error fetching data:', error);
+				}
+			},
+
+			async getsyainmsg() {
+				try {
+					const response = await axios.get('/Syain', {
+					});
+					this.getmsg = response.data.data;
+				} catch (error) {
+					this.error = 'Failed to fetch data';
+					console.error('Error fetching data:', error);
+				}
+			},
+			checkUser() {
+				if (sessionStorage.getItem("userrole") != null && sessionStorage.getItem("username") != null
+				) {
+					this.user.userrole = sessionStorage.getItem("userrole");
+					this.user.username = sessionStorage.getItem("username");
+				} else {
+					window.location.href = 'login.html';
+					console.log("无用户信息")
+				}
+			},
+			async getsyainSelect() {
+				if (this.selectmsg.zaisyokuno != false && this.selectmsg.zaisyokuyes != false) {
+					console.log('name:' + this.selectmsg.name);
+					try {
+						const response = await axios.get('/Syain/1', {
+							params: {
+								syozokuKaisya: this.selectmsg.syozokuKaisya,
+								syokugyoKind: this.selectmsg.syokugyoKind,
+								zaisyokuyes: this.selectmsg.zaisyokuyes,
+								zaisyokuno: this.selectmsg.zaisyokuno,
+								name: this.selectmsg.name,
+							}
+						});
+						this.syainMain = response.data.data;
+						console.log("返回数据" + response.data.data)
+					} catch (error) {
+						this.getmsg = 'Faileds to fetch data';
+						console.error('Error fetching data:', error);
+					}
+				} else {
+					alert('在籍と非在籍がいずれにしても、１つのチェックが必須です。');
+				}
+			},
+
+			async deletSyain(ID) {
+				try {
+					const response = await axios.delete('/Syain', {
+						params: {
+							syainId: ID, // 使用传入的 ID 参数，确保参数名与后端期望的参数名一致
+						}
+					});
+					if (response.data.code == 1) {
+						console.log(response.data.msg);
+						this.syainMain.length() = 0;
+						this.getsyainSelect();
+					}
+				} catch (error) {
+					this.error = 'Failed to fetch data';
+					console.error('Error fetching data:', error);
+				}
+			},
+
+			// async deletSyain(ID) {
+			// 	try {
+			// 		const response = await axios.delete('/Syain', {
+			// 			params: {
+			// 				id: this.ID,
+			// 			}
+			// 		});
+			// 		if (response.data.code == 1) {
+			// 			console.log(response.data.msg);
+			// 			//this.getsyainSelect();
+			// 		}
+			// 		alert(response.data.msg);
+			// 	} catch (error) {
+			// 		this.error = 'Failed to fetch data';
+			// 		console.error('Error fetching data:', error);
+			// 	}
+			// },
+			async getall() {
+				try {
+					const response = await axios.get('/Syain');
+					if (response.data.code == 1) {
+						console.log(response.data.msg);
+						this.syainMain = response.data.data;
+						console.log("返回数据" + response.data.data)
+					}
+				} catch (error) {
+					this.error = 'Failed to fetch data';
+					console.error('Error fetching data:', error);
+				}
+			},
+			loginout() {
+				sessionStorage.removeItem("userrole");
+				sessionStorage.removeItem("username");
+				window.location.href = 'login.html';
+			},
+			checkdelete(id, fristname, lastname) {
+				console.log("id:" + id)
+				let result = confirm(fristname + lastname + "を削除してもよろしいですか？");
+				if (result) {
+					this.deletSyain(id);
+				}
+			},
+			kousin(id) {
+				console.log("id:" + id)
+				window.location.href = 'syain_update.html?id=' + id;
+			}
+		}
+	});
+</script>
+
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bank_auto.css" />
+    <script src="https://zipaddr.github.io/bankautoc.js" charset="UTF-8"></script>
+</head>
+<style>
+    .input_keireki {
+        width: 80px;
+        box-sizing: border-box;
+        border: none;
+        outline: none;
+    }
+
+    .td_keireki {
+        width: 80px;
+    }
+
+    .td_select {
+        width: 30px;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+
+    .td_select {
+        height: 100%;
+        width: 70px;
+    }
+</style>
+
+<body>
+    <div id="all">
+        <!-- <table>
+            <thead>
+            </thead>
+            <tbody>
+                <tr v-for="(row, rowIndex) in Math.ceil(ITOS.length / 5)">
+                    <td v-if="rowIndex === 0" rowspan="5">ITOS</td>
+                    <td v-for="(item, cellIndex) in 5" :key="cellIndex">
+                        {{ ITOS[rowIndex * 5 + cellIndex] }}
+                        <select v-if="ITOS[rowIndex* 5+cellIndex]!=null" v-model="res[rowIndex * 5 + cellIndex]">
+                            <option v-for="(item,index) in levellist" :key="index"
+                                :value="ITOS[rowIndex * 5 + cellIndex]+'-'+item.value">{{item}}</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table> -->
+
+
+        <!-- <div v-for="(item,index) in syainKeirekiall">
+            <table
+                style="table-layout: fixed; border-collapse: collapse; width: 90%; border: 1px solid black; text-align: center; margin: auto;">
+                <tbody>
+                    <tr>
+                        <td class="td_keireki" colspan="3">開始年月</td>
+                        <td class="td_keireki" colspan="3">
+                            <input type="text" class="input_keireki" v-model="item.kaisibi" >
+                        </td>
+                        <td class="td_keireki" colspan="3">終了年月</td>
+                        <td class="td_keireki" colspan="3">
+                            <input type="text" class="input_keireki" v-model="item.syuryobi">
+                        </td>
+                        <td class="td_keireki" colspan="3">PJ名</td>
+                        <td style="width: 200px;" colspan="9">
+                            <input type="text" class="input_keireki" style="width: 80%;" v-model="item.pjName">
+                        </td>
+                        <td class="td_keireki" colspan="3">对日</td>
+                        <td class="td_select" colspan="2">
+                            <select class="td_select" v-model="item.tainitiFlag">
+                                <option value="1">{{}}</option>
+                                <option >○</option>
+                                <option >◎</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_keireki" colspan="3">场所
+                        </td>
+                        <td class="td_select" colspan="3">
+                            <select >
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td class="td_keireki" colspan="3">人数</td>
+                        <td colspan="3"><input type="text" class="input_keireki"></td>
+                        <td class="td_keireki" colspan="3">种类</td>
+                        <td class="td_select" colspan="3">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td class="td_keireki" colspan="3">开发环境</td>
+                        <td class="td_select" colspan="3">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td class="td_keireki" colspan="3">运用环境</td>
+                        <td class="td_select" colspan="2">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_keireki" colspan="3">言語</td>
+                        <td colspan="6"><input type="text" class="input_keireki" style="width: 70%;"></td>
+                        <td class="td_keireki" colspan="3">DB</td>
+                        <td colspan="7"><input type="text" class="input_keireki" style="width: 70%;"></td>
+                        <td class="td_keireki" style="font-size: smaller;" colspan="3">FW・IDE・ツール</td>
+                        <td colspan="7"><input type="text" class="input_keireki" style="width: 70%;"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_keireki" colspan="3">担当</td>
+                        <td class="td_select td_keireki" colspan="3">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td class="td_keireki" colspan="3">作業範囲</td>
+                        <td style="width: 20px;">要</td>
+                        <td style="width: 40px;">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td style="width: 20px;">要</td>
+                        <td style="width: 40px;">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td style="width: 20px;">要</td>
+                        <td style="width: 40px;">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td style="width: 20px;">要</td>
+                        <td style="width: 40px;">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td style="width: 20px;">要</td>
+                        <td style="width: 40px;">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td style="width: 20px;">要</td>
+                        <td style="width: 40px;">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td style="width: 20px;">要</td>
+                        <td style="width: 40px;">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td style="width: 20px;">要</td>
+                        <td style="width: 40px;">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td style="width: 20px;">要</td>
+                        <td style="width: 40px;">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+                        <td style="width: 20px;">要</td>
+                        <td style="width: 40px;">
+                            <select>
+                                <option>园</option>
+                            </select>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="td_keireki" colspan="3">開発概要</td>
+                        <td colspan="26">
+                            <textarea class="input_keireki" style="width: 100%;"></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+        </div>
+        <button v-on:click="addinput()">新增</button>
+        <div v-for="(item,index) in syainKeirekiall" id="forinput">
+            <input-demo :demoIndex="index"></input-demo>
+        </div> -->
+
+        <p>
+            {{demostr.toString()[0]}}
+            {{demostr[1]}}
+            {{demostr[2]}}
+            {{demostr[3]}}
+        </p>
+        <!-- <input type="hidden" bankauto_param="bkc=bank_code_id,bkn=bank_name_id,brc=branch_code_id,brn=branch_name_id">
+        <input type="text" id="bank_code" placeholder="银行代码">
+        <input type="text" id="bank_name" placeholder="银行名称">
+        <input type="text" id="branch_code" placeholder="分行代码">
+        <input type="text" id="branch_name" placeholder="分行名称"> -->
+        
+        银行代码：<input type="text" id="bank_code"><br>
+        银行名称：<input type="text" id="bank_name" name="bank_name" placeholder="例：みずほ銀行"><br>
+        分行代码：<input type="text" id="branch_code"><br>
+        分行名称：<input type="text" id="branch_name"><br>
+        demo<input type="text" id="branch_name" pattern="^[a-zA-Z0-9]*$" v-model="post"><br>
+        <!-- <input type="hidden" bankauto_param="bkc=bank_code_id,bkn=bank_name_id,brc=branch_code_id,brn=branch_name_id"> -->
+        <button v-on:click="getItostg()">提交</button> 
+    </div>
+
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="vue2.7.14.js"></script>
+<script>
+    let vue2 = new Vue({
+        el: '#all',
+        data: {
+            syainKeirekiall: [
+                {//经历
+                    kaisibi: '',
+                    syuryobi: '',
+                    pjName: '',
+                    tainitiFlag: '',
+                    basyo: '',
+                    kibo: '',
+                    gyosyu: '',
+                    kaihatukankyo: '',
+                    unyoukankyo: '',
+                    gengo: '',
+                    db: '',
+                    tool: '',
+                    tantou: '',
+                    sagyohani: '',
+                    gaiyou: '',
+                    tourokubi: '',
+                    kousinnbi: '',
+                },],
+            tainitiFlagTg: [],
+            ITOS: [{ value: 1 }, { value: 1 }, { value: 2 }, { value: 1 }, { value: 3 }, { value: 1 }, { value: 1 }],
+            levellist: [1, 2, 3],
+            ITOStg: [1, 2, 3, 4, 5, 6, 7, 85, 4, 9,],
+            ITOSpost: [],
+            post: '',
+            demostr: 123123,
+        },
+        methods: {
+            addtext() {
+                this.post = '';
+                for (let i = 0; i < this.ITOSpost.length; i++) {
+                    if (i < (this.ITOSpost.length - 1)) {
+                        this.post += this.ITOSpost[i] + ',';
+                    }
+                    else {
+                        this.post += this.ITOSpost[i];
+                        this.ITOSpost = [];
+                    }
+                }
+            },
+            // copyIT() {
+            // },
+            // addinput() {
+            //     const newinputL = {
+            //         kaisibi: '',
+            //         syuryobi: '',
+            //         pjName: '',
+            //         tainitiFlag: '',
+            //         basyo: '',
+            //         kibo: '',
+            //         gyosyu: '',
+            //         kaihatukankyo: '',
+            //         unyoukankyo: '',
+            //         gengo: '',
+            //         db: '',
+            //         tool: '',
+            //         tantou: '',
+            //         sagyohani: '',
+            //         gaiyou: '',
+            //         tourokubi: '',
+            //         kousinnbi: '',
+            //     }
+            //     this.index += 1;
+            //     this.syainKeirekiall.push(newinputL);
+            // },
+            async getItostg() {
+                try {
+                    const response = await axios.get('/Tgsetting', {
+                        params: {
+                            post:this.post
+                        }
+                    });
+                    this.ITOS = response.data.data;
+                } catch (error) {
+                    this.error = 'Failed to fetch data';
+                    console.error('Error fetching data:', error);
+                }
+            },
+        },
+    })//点击按钮给数组新增表单对象，
+</script>
+
+</html>

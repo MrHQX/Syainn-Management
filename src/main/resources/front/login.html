@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<style>
+    #space_0 {
+        display: flex;
+        flex-direction: column;
+        /**垂直排列**/
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    #top {
+        /** web标题**/
+        display: flex;
+        justify-content: space-between;
+        margin: 1%;
+    }
+
+    #top_1 {
+        margin-left: 1%;
+    }
+
+    #text_title_mid {
+        padding-top: 25px;
+    }
+
+    #top_img {
+        padding: 10px;
+    }
+
+    #space_1 {
+
+        width: auto;
+        height: auto;
+        padding-bottom: 1%;
+        padding-left: 1%;
+        padding-right: 1%;
+        position: relative;
+        display: flex;
+
+    }
+
+    #space_left {
+        /** 左侧**/
+        width: 50%;
+        height: auto;
+        margin: 1%;
+        border-style: solid;
+        border-width: 1px;
+
+    }
+
+    #space_right {
+        /** 右侧**/
+        background-color: white;
+        width: 50%;
+        height: auto;
+        margin: 1%;
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    #button_login {
+        /**登录按钮**/
+        border-radius: 10px;
+        background-color: cornflowerblue;
+        width: 100px;
+        height: 50px;
+        margin-top: 5%;
+        color: white;
+    }
+
+    #form_title {
+        /**表单标题**/
+        background-color: lightskyblue;
+        margin-top: 0;
+    }
+
+    #input_login {
+        text-align: center;
+        margin-top: 10%;
+    }
+    .err_msg{
+        font-size: 10px;
+        color: red;
+    }
+
+    .table {
+        content: 20px 50px;
+    }
+
+    #right_p {
+        padding-left: 50px;
+    }
+
+    #div_flex {
+        display: flex;
+    }
+
+    .li_yogu {
+        display: inline;
+    }
+
+    .right3_p {
+        padding-left: 10px;
+    }
+</style>
+
+<body>
+    <div id="space_0">
+        <div id="top">
+            <div id="top_1">
+                <h3>株式会社xxxxxx</h1>
+                    <p>xxxxxx</p>
+            </div>
+            <p id="text_title_mid">社内統合管理システム</p>
+            <img src="" id="top_img">
+        </div>
+        <div id="space_1">
+            <div id="space_left">
+                <span>
+                    <p id="form_title">利用者登録</p>
+                </span>
+                <form id="input_login">
+                    <!-- 
+                    表单
+                -->
+                    <span id="id">ログインID: <input type="text" name="ID" v-model="LoginData.userCode"><br></span>
+                    <!-- ----------id字符不对信息------------>
+                    <p class="err_msg" v-show="idok==0">{{iderr}}</p>
+                    <br>
+                    <span id="pass">バスワード: <input type="password" name="password" v-model="LoginData.password"></span>
+                    <!-- ----------密码字符不对信息------------>
+                    <p class="err_msg" v-show="passwordok==0">{{passworderr}}</p>
+                    <br>
+                    <button type="button" id="button_login" v-on:click="login">ログイン</button>
+                </form>
+            </div>
+            <div id="space_right">
+                <p id="form_title">応用機能</p>
+                <div id="div_flex">
+                    <div>
+                        <ul>
+                            <li>受注管理</li>
+                            <li>見積作成</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>外注管理</li>
+                            <li>作業催促</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>請求做成</li>
+                            <li>各書類作成</li>
+                        </ul>
+                    </div>
+                </div>
+                <p id="form_title">マスタ管理機能</p>
+                <div>
+                    <ul>
+                        <li>取引先情報機能</li>
+                        <li>社員情報</li>
+                    </ul>
+                    <ul>
+                        <li class="li_yogu">基本情報</li>
+                        <li class="li_yogu">履歴</li>
+                        <li class="li_yogu">経歴</li>
+                    </ul>
+                </div>
+                <p id="form_title">開発関連</p>
+                <p class="right3_p">バージョンVer0.0.0.1</p>
+                <p class="right3_p">保留</p>
+                <!--   
+                    <span>
+                    <p id="form_title">応用機能</p>
+                </span>
+                <table class="table">
+                    <tr>
+                        <td>受注管理</td>
+                        <td>外注管理</td>
+                        <td>請求做成</td>
+                    </tr>
+                    <tr>
+                        <td>見積作成</td>
+                        <td>作業催促</td>
+                        <td>各書類作成</td>
+                    </tr>
+                </table>
+                <span>
+                    <p id="form_title">マスタ管理機能</p>
+                </span>
+                <table class="table">
+                    <tr>
+                        <td>取引先情報機能</td>
+                    </tr>
+                    <tr>
+                        <td>社員情報</td>
+                    </tr>
+                </table>
+                <p id="right_p">基本情報　履歴　経歴</p>
+                <span>
+                    <p id="form_title">開発関連</p>
+                </span>
+                <table class="table">
+                    <tr>
+                        <td>バージョンVer0.0.0.1</td>
+                    </tr>
+                    <tr>
+                        <td>保留</td>
+                    </tr>
+                </table>
+                -->
+                <!-- .....................................................-->
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="vue2.7.14.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    let = idPattern = /^[a-zA-Z0-9_-]{8,20}$/;
+    let = pwPattern = /^[a-zA-Z0-9]{6,15}$/;
+    let app = new Vue({
+        el: '#space_0',
+        data: {
+            LoginData: {
+                userCode: '',
+                password: '',
+            },
+            idok: 1,
+            passwordok: 1,
+            iderr: '',
+            passworderr: '',
+        },
+        methods: {
+			junp: function(){
+				window.location.href = 'shayinn_mg.html';
+			},
+            login: function () {
+                /* if (this.IDcheck() == true && this.PWcheck() == true) {
+                    //登录请求
+                     axios.post('/user/login', this.LoginData)
+                        .then(Response => {
+							if(Response.data.code==1)
+							{
+							alert('登录成功');
+                            sessionStorage.setItem('username', Response.data.data.userName);
+                            sessionStorage.setItem('userrole', Response.data.data.userRole);
+                            sessionStorage.setItem('userId', Response.data.data.userId);
+							window.location.href ='shayinn_mg.html';
+							}
+                        })
+                        .catch(error => {
+							alert(Response.data.msg);
+                        }) 
+                }
+                else {
+                    alert('正则问题');
+                } */
+                window.location.href ='shayinn_mg.html';
+            },
+            IDcheck: function () {
+                //检查输入的id正则
+                if (idPattern.test(this.LoginData.userId) == false) {
+                    alert(idPattern.test(this.LoginData.userId));
+                    this.iderr = 'id字符数必须是大于8小于20,字符只能是大写字母和小写字母以及_,-组从';
+                    this.idok = 0;
+                    return false;
+                }
+                else {
+                    this.idok = 1;
+                    return true;
+                }
+            },
+            PWcheck: function () {
+                //检查输入的密码正则
+                if (pwPattern.test(this.LoginData.password) == false) {
+                    alert(pwPattern.test(this.LoginData.password));
+                    this.iderr = '密码必须是大于8位小于15位,字符只能是大写字母和小写字母以及数字组成';
+                    this.passwordok = 0;
+                    return false;
+                }
+                else {
+                    this.passwordok = 1;
+                    return true;
+                }
+            }
+        }
+    });
+</script>
+
+</html>
